@@ -11,21 +11,22 @@ const UploadPage = () => {
 
     return (
         <>
-            {publicId && (
+            <p>Img Public Id :{publicId}</p>
+            {publicId && 
                 <CldImage
                     src={publicId} // Use just the public ID
                     width={270}
                     height={180}
                     alt="a logo"
-                    quality={75} // Optional: add quality to the image
                 />
-            )}
+            }
             <CldUploadWidget
                 uploadPreset='o383zzon'
-                onUploadAdded={(result, widget) => {
+                onSuccess={(result, widget) => {
                     if (result.event !== 'success') return;
                     const info = result.info as CloudinaryResult;
-                    setPublicId(info.public_id); // Store the public ID
+                    setPublicId(info.public_id);
+                    console.log("Result",result);
                 }}
             >
                 {({ open }) => (
